@@ -1,0 +1,12 @@
+Parte A: ¿Cuantos componentes identificás?
+Esquema: https://
+Host: api.github.com
+Puerto: :443
+Ruta:/repos/bryancs/isw521/issues
+Query String: ?state=open&labels=semana1
+Fragmento: #comentarios
+
+Parte B: Hacer unos URLs
+/cursos/san-carlos/2026-II/isw-521
+/estudiantes/2022-0001
+/cursos/isw-521/semana/3/materiales

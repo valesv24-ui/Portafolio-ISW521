@@ -1,0 +1,38 @@
+Pregunta 1
+campus.utn.ac.cr
+TLD: .cr
+SLD: ac
+Subdominio: campus + utn
+Tipo: ccTLD
+
+www.netflix.com
+TLD: .com
+SLD: netflix
+Subdominio: www
+Tipo: gTLD
+
+api.github.io
+TLD: .io
+SLD: github
+Subdominio: api
+Tipo: gTLD
+
+app.maravilla.co.cr
+TLD: .cr
+SLD: co
+Subdominio: app + maravilla
+Tipo: ccTLD
+
+campus.utn.ac.cr y app.maravilla.co.cr son ccTLD
+
+www.netflix.com y api.github.io son gTLD
+
+Pregunta 2
+Para .cr sería NIC Costa Rica y para .com sería Verisign. Parece un subdominio no necesitas ICANN, lo puedes configurar tu mismo desde tu DNS.
+
+Pregunta 3
+No es necesario pagar, ya que tienen utn.ac.cr, sólo es agregar un registro DNS interno.
+
+Pregunta 4
+Registro A es directo ya que mapea un nombre directamente a una dirección IP, mientras que CNAME mapea un nombre a otro nombre.
+Lo cual es útil para cuando son múltiples subdominios.

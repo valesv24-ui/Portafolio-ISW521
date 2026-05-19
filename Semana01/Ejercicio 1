@@ -1,0 +1,14 @@
+Pregunta 1 ¿Es correcto lo que dijo el Rector?
+El rector no está equivocado, pero sí es impreciso. Ya que internet es la infraestructura de red global,
+mientras que la WWW es un servicio que corre sobre internet usando HTTP/HTTPS. En cierta parte el director de TI
+tiene razón ya que técnicamente el sistema viviría en la web, y la distinción importa porque se puede usar HTTP
+en una red privada sin ser accesible públicamente.
+
+Pregunta 2 Si usan HTTP solo para usuarios internos, ¿usan Internet, WWW, o ambos?
+Usan ambas parcialmente, ya que usan una infraestructura de internet, pero la WWW sería 
+privado no una pública, técnicamente se le conoce como una Intranet con tecnología web.
+
+Pregunta 3  ¿W3C o IETF define los estándares más relevantes?
+Ambos definen estándares relevantes, pero con distintos roles.
+Ya que IETF define HTTP que es el protocolo de transporte, mientras que W3C define HTML,
+CSS, accesibilidad web (la capa de presentación).

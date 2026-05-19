@@ -1,0 +1,14 @@
+Pregunta 1 ¿Qué topología para cada uno?
+Trámites para vecinos: Internet porque debe ser accesible para cualquier ciudadano al cantón sin restricciones.
+Planillas de RRHH: Intranet porque hay información confidencial solo para empleados municipales internos.
+Permisos para constructoras: Extranet porque es un acceso controlado a terceros externos específicos (empresas registradas).
+
+Pregunta 2 ¿Cuál requiere más inversión en seguridad?
+La de permisos para constructoras ya que ésta requiere más inversión porque combina riesgos de ambos,
+da accesos a externos como internet, pero maneja datos sensibles como la intranet. Por lo tanto,
+esta necesita una autenticación robusta con control de acceso por empresa y auditoría de accesos.
+
+Pregunta 3 ¿Un mismo servidor físico puede alojar los tres de forma segura?
+Sí conceptualmente mediante virtualización y segmentación se podría claro mismo servidor físico. Por ejemplo,
+con Firewalls entre cada segmento, VLANs distintas para aislar el tráfico de red y contenedores separados.
+Ya que esto permitiría que se vean físico tuve como host, pero lógicamente los sistemas están aislados entre sí.
