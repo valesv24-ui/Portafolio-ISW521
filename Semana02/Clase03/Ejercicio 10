@@ -1,0 +1,17 @@
+P1
+No va a funcionar porque Al usar { mode: "no-cors" }, JavaScript le dice al navegador que traiga el recurso de forma opaca.
+El navegador sí hace la petición de fondo, pero bloquea por completo el acceso a la respuesta. Por lo tanto, cuando intentás hacer 
+.then(r => r.json()), la respuesta está vacía (opaca) y el código rompe con un error de parseo. El comando no-cors no arregla los 
+problemas de CORS desde el frontend.
+
+P2
+No, va a fallar debido a que se esta enviando la petición con { credentials: "include" } (lo que significa que viajan cookies o 
+encabezados de autenticación). Por seguridad, la especificación de CORS prohíbe estrictamente usar el comodín * en el encabezado 
+Access-Control-Allow-Origin cuando se incluyen credenciales.
+
+P3
+Aparece un error de CORS indicando que la petición Preflight (solicitud previa OPTIONS) falló o no fue aprobada.
+Al hacer un método "no simple" como DELETE y agregarle un encabezado personalizado, el navegador está obligado a
+enviar primero una petición automática usando el método OPTIONS para preguntarle al servidor si tiene permiso de
+borrar. Como el servidor NO maneja OPTIONS, responde con un error, por lo que el navegador frena el flujo y nunca
+llega a ejecutar el DELETE real.
