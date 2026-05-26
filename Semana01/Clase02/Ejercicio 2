@@ -1,0 +1,16 @@
+P1
+El beneficio más importante es que el HTTP/2 permite enviar múltiples request en una sola conexión TPC. 
+Ejemplo el Server Push, Reduce el overhead en cada request, menor uso de memoria.
+ 
+P2
+Ya que, si un paquete se pierde en la red, el TPC, detiene todos los demás esperando la retransmisión, 
+aunque estos no sean dependientes de ese paquete.
+ 
+P3
+El HTTP/3 permite que cada stream sea independiente, por lo que la conexión es más rápida y tiene un mejor 
+rendimiento en redes móviles y inestables.
+ 
+P4
+Curl -I --http2 https://sitio.com
+Curl -v https://sitio.com 2>&1 | grep -E "<HTTP|ALPN|h2|h3"
+Curl --http3 https://sitio.com -I
