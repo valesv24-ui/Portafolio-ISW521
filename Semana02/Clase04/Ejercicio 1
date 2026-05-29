@@ -1,0 +1,14 @@
+P1
+a.	Fix: Corregir autenticación del login.
+b.	Feat: Actualizar cambios de interfaz.
+c.	Feat: Agregar funcionalidad para el cliente.
+d.	No debía comunicarse.
+e.	No debía comunicarse.
+
+P2
+e5d2198.env: Expone las contraseñas y las claves de API.
+f01b334 node_modules/: No es código propio, lo que infla el repositorio.
+Se debía hacer un gitignore con ambos.
+
+P3
+El archivo recién creado, sin git add es un estado sin seguimiento y con el git add, sin commit es un estado en área de preparación.
