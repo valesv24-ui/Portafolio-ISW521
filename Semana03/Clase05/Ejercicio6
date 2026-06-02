@@ -1,0 +1,25 @@
+<!-- 1. Imagen principal con picture -->
+<picture>
+  <source srcset="imagen-grande.jpg" media="(min-width: 800px)">
+  <img src="imagen-pequeña.jpg" alt="Imagen principal del curso de desarrollo web" title="Banner principal">
+</picture>
+
+<!-- 2. Video de la clase -->
+<video controls poster="miniatura.jpg" title="Video de la clase 1">
+  <source src="clase.mp4" type="video/mp4">
+  <source src="clase.webm" type="video/webm">
+  Tu navegador no soporta este video.
+</video>
+
+<!-- 3. Audio de podcast -->
+<audio controls title="Episodio 1 del Podcast académico">
+  <source src="podcast.mp3" type="audio/mpeg">
+  Tu navegador no soporta este audio.
+</audio>
+
+<!-- 4. Iframe de Google Maps -->
+<iframe 
+  src="https://www.google.com/maps/embed?pb=..." 
+  sandbox="allow-scripts allow-same-origin" 
+  title="Ubicación de la sede central">
+</iframe>

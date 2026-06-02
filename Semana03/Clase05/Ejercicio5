@@ -1,0 +1,29 @@
+<table border="1">
+  <caption>Horario ISW - I Cuatrimestre 2026</caption>
+  <thead>
+    <tr>
+      <th scope="col">Hora</th>
+      <th scope="col">Lunes</th>
+      <th scope="col">Martes</th>
+      <th scope="col">Miércoles</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>7:00</td>
+      <td>ISW-521</td>
+      <td>ISW-311</td>
+      <td>Libre</td>
+    </tr>
+    <tr>
+      <td>9:00</td>
+      <td colspan="3">Receso</td>
+    </tr>
+    <tr>
+      <td>10:00</td>
+      <td>ISW-421</td>
+      <td>ISW-521</td>
+      <td>ISW-311</td>
+    </tr>
+  </tbody>
+</table>

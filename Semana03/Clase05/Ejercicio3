@@ -1,0 +1,49 @@
+1. <blockquote>
+Flujo: Bloque
+Tipo: Semántico
+Uso real: Para meter una cita textual larga de un autor o un libro
+
+2. <span>
+Flujo: En línea
+Tipo: Presentacional/Genérico
+Uso real: Para aplicar un estilo CSS específico (Como cambiar de color) a una sola palabra dentro de un párrafo
+
+3. <strong>
+Flujo: En línea
+Tipo: Semántico
+Uso real: Para dar importancia visual y textual a palabras claves importantes en un texto
+
+4. <article>
+Flujo: Bloque
+Tipo: Semántico
+Uso real: Para envolver un post de un blog o una noticia independiente
+
+5. <b>
+Flujo: En línea
+Tipo: Presentacional
+Uso real: Para poner un texto en negrita por pura estética
+
+6. <time>
+Flujo: En línea
+Tipo: Semántico
+Uso real: Para que los buscadores entiendan exactamente la fecha de publicación de un artículo
+
+7. <ul>
+Flujo: Bloque
+Tipo: Semántico
+Uso real: Para crear una lista de compras o un menú de navegación con viñetas
+
+8. <mark>
+Flujo: En línea
+Tipo: Semántico
+Uso real: Para resaltar texto simulando un marcador o un resaltador
+
+9. <code>
+Flujo: En línea
+Tipo: Semántico
+Uso real: Para mostrar un fragmento de código de programación dentro de una oración
+
+10. <section>
+Flujo: Bloque
+Tipo: Semántico
+Uso real: Para agrupar temáticamente partes de una misma página

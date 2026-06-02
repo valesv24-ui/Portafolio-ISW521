@@ -1,0 +1,11 @@
+P1
+El motor del navegador lee de arriba a bajo y autocorrige los errores para armar el árbol de DOM.
+
+P2
+Si, al no tener declaración <!DOCTYPE html> al inicio del documento, el navegador activa el modo de 
+compatibilidad (Quirks mode), emulando comportamientos y bugs de navegadores viejos en lugar de seguir
+los estándares  modernos.
+
+P3
+Debido a que la etiqueta <b> nunca se cerró, el texto "mundo" y toda la segunda línea se verán en negrita,
+ya que el navegador propaga el estilo hasta que encuentre un cierre o termine el cuerpo del documento.

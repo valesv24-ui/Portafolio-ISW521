@@ -1,0 +1,17 @@
+<header>
+  <nav>    #Porque contiene la navegación principal del sitio.
+    <a href="/">Inicio</a>
+  </nav>
+</header>
+
+<main>  #Porque envuelve todo el contenido central y único del al pagina. Así indica a los motores de busqueda el núcleo del sitio.
+  <article> #Porque un artículo de blog tiene sentido por sí mismo, es independiente y distribuible de forma aislada.
+    <h2>Mi artículo</h2>
+    <div class="content">...</div>
+  </article>
+
+  <aside>Tags</aside> #Porque representa contenido secundario que esta relacionado indirectamente con el artículo principal.
+</main>
+
+<footer>© 2026</footer> #Remplaza el div.footer para definir correctamente el pie de página semántico con los derechos de autor.
+
