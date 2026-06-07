@@ -14,9 +14,10 @@ Landing page para **Amaretto's Café**, negocio local ubicado en Ciudad Quesada,
 ## 🗂️ Estructura del proyecto
 
 ```
-laboratorio-01/
-└── lab01/
+Amarettos Cafe/
+└── Landing Page - Amarretto's Café/
     ├── index.html        # Documento principal
+    ├── README.md
     ├── css/
     │   └── style.css     # Estilos (Flexbox, Grid, responsive, dark mode)
     ├── js/
@@ -72,12 +73,12 @@ laboratorio-01/
 ## 🚀 Cómo abrir el proyecto
 
 1. Clonar o descargar el repositorio
-2. Abrir el archivo `laboratorio-01/lab01/index.html` en cualquier navegador moderno
+2. Abrir el archivo `Amarettos Cafe/Landing Page - Amarretto's Café/index.html` en cualquier navegador moderno
 3. No requiere servidor ni dependencias adicionales
 
 ```bash
-git clone https://github.com/tu-usuario/tu-repo.git
-cd tu-repo/laboratorio-01/lab01
+git clone https://github.com/valesv24-ui/Laboratorio01-LP.git
+cd "tu-repo/Amarettos Cafe/Landing Page - Amarretto's Café"
 # Abrir index.html en el navegador
 ```
 
