@@ -1,0 +1,53 @@
+/* Contenedor principal para organizar el layout de forma vertical */
+.layout-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  gap: 10px; /* Separación opcional entre bloques */
+}
+
+/* 1. NAVBAR */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  padding: 15px;
+  background-color: #e0e0e0;
+}
+
+/* 2. BODY (Columnas horizontales) */
+.main-body {
+  display: flex;
+  flex-direction: row; /* Wrapper en dirección fila para alinear las 3 columnas */
+  flex: 1;             /* Hace que el cuerpo ocupe el espacio vertical restante */
+  gap: 10px;
+}
+
+.sidebar {
+  flex: 1;
+  background-color: #d1e7dd;
+}
+
+.content {
+  flex: 3;
+  background-color: #fff3cd;
+}
+
+.panel {
+  flex: 1;
+  background-color: #f8d7da;
+}
+
+/* 3. FOOTER */
+.footer {
+  display: flex;
+  gap: 10px;
+  padding: 15px;
+  background-color: #e2e3e5;
+}
+
+.footer .col {
+  flex: 1; /* Las 3 columnas toman exactamente el mismo tamaño */
+  text-align: center;
+}

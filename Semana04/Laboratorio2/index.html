@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AcueductosIoT · Dashboard de Monitoreo Hídrico</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!--
+    CURSOR PERSONALIZADO DE VALERY — gota de agua turquesa
+    El SVG sigue el mouse en tiempo real vía JS.
+    En modo alto contraste o móvil se oculta automáticamente.
+    aria-hidden="true": invisible para lectores de pantalla.
+  -->
+  <div id="cursor-drop" aria-hidden="true">
+    <svg viewBox="0 0 28 36" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cursor gota de agua">
+      <path d="M14 2 C14 2 3 16 3 22 C3 28.6 8 34 14 34 C20 34 25 28.6 25 22 C25 16 14 2 14 2Z"
+            fill="url(#dropGrad)" stroke="#00e5cc" stroke-width="1.2"/>
+      <path d="M9 24 C9 24 10 28 14 28" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" stroke-linecap="round"/>
+      <defs>
+        <linearGradient id="dropGrad" x1="14" y1="2" x2="14" y2="34" gradientUnits="userSpaceOnUse">
+          <stop offset="0%"   stop-color="#a855f7" stop-opacity="0.9"/>
+          <stop offset="100%" stop-color="#00e5cc" stop-opacity="0.85"/>
+        </linearGradient>
+      </defs>
+    </svg>
+  </div>
+
+  <!-- ============================================
+       EJERCICIO 1 · BARRA DE NAVEGACIÓN
+       justify-content: space-between: logo y controles
+       en extremos opuestos del main axis.
+       align-items: center: centrado en el cross axis.
+       ============================================ -->
+  <header role="banner">
+    <nav class="navbar" role="navigation" aria-label="Navegación principal del dashboard">
+
+      <div class="nav-logo" role="img" aria-label="AcueductosIoT - Ir al inicio">
+        <div class="logo-icon" aria-hidden="true">💧</div>
+        <span class="logo-text">Acueductos<span>IoT</span></span>
+      </div>
+
+      <ul class="nav-links" role="menubar" aria-label="Menú principal">
+        <li role="none"><a href="#" class="active" role="menuitem" aria-current="page">Inicio</a></li>
+        <li role="none"><a href="#" role="menuitem">Sensores</a></li>
+        <li role="none"><a href="#" role="menuitem">Alertas</a></li>
+        <li role="none"><a href="#" role="menuitem">Reportes</a></li>
+      </ul>
+
+      <div class="nav-controls" role="group" aria-label="Controles de accesibilidad y sesión">
+
+        <div class="live-badge" role="status" aria-live="polite" aria-label="Sistema en vivo">
+          <div class="live-dot" aria-hidden="true"></div>
+          <span>EN VIVO</span>
+        </div>
+
+        <!--
+          INCLUSIÓN: Botón de Alto Contraste (WCAG 1.4.3 / 1.4.11)
+          Alterna a un tema con fondo negro, texto blanco/amarillo
+          y bordes gruesos para usuarios con baja visión.
+        -->
+        <button class="btn-a11y"
+                id="contrastToggle"
+                onclick="toggleContrast()"
+                aria-pressed="false"
+                aria-label="Activar modo alto contraste para mayor accesibilidad visual">
+          <span aria-hidden="true">⬛</span>
+          <span>Alto contraste</span>
+        </button>
+
+        <!--
+          Toggle claro/oscuro con estado ARIA
+        -->
+        <button class="theme-toggle"
+                id="themeToggle"
+                onclick="toggleTheme()"
+                aria-pressed="false"
+                aria-label="Cambiar entre modo oscuro y modo claro">
+          <div class="toggle-track" aria-hidden="true">
+            <div class="toggle-thumb"></div>
+          </div>
+          <span class="toggle-label" id="themeLabel" aria-hidden="true">☀️ Claro</span>
+        </button>
+
+        <button class="btn-logout"
+                aria-label="Cerrar sesión del sistema">
+          Cerrar Sesión
+        </button>
+      </div>
+
+    </nav>
+  </header>
+
+  <!-- ============================================
+       EJERCICIO 3 · LAYOUT 3 COLUMNAS
+       flex: 1 / flex: 3 / flex: 1 = 5 porciones
+       sin ningún width en píxeles fijos.
+       ============================================ -->
+  <div class="dashboard-layout" role="main">
+
+    <!-- SIDEBAR: flex: 1 = 1/5 del espacio -->
+    <aside class="sidebar" aria-label="Menú lateral de módulos">
+      <span class="sidebar-section-label" aria-hidden="true">Módulos</span>
+      <nav aria-label="Módulos del sistema">
+        <ul role="list">
+          <li class="active" role="listitem" aria-current="true" tabindex="0"><span class="sidebar-icon" aria-hidden="true">📊</span> Resumen</li>
+          <li role="listitem" tabindex="0"><span class="sidebar-icon" aria-hidden="true">💧</span> Tanques</li>
+          <li role="listitem" tabindex="0"><span class="sidebar-icon" aria-hidden="true">⚡</span> Presiones</li>
+          <li role="listitem" tabindex="0"><span class="sidebar-icon" aria-hidden="true">🧪</span> Calidad</li>
+          <li role="listitem" tabindex="0"><span class="sidebar-icon" aria-hidden="true">🌊</span> Caudales</li>
+          <li role="listitem" tabindex="0"><span class="sidebar-icon" aria-hidden="true">⚙️</span> Configuración</li>
+        </ul>
+      </nav>
+      <div class="sidebar-footer" aria-label="Información del sistema">
+        v2.4.1 · Guanacaste<br/>09/06/2026
+      </div>
+    </aside>
+
+    <!-- MAIN CONTENT: flex: 3 = 3/5 del espacio -->
+    <main class="main-content" aria-label="Contenido principal del dashboard">
+
+      <div class="section-header">
+        <span class="section-title" aria-label="Sección: Monitoreo en Tiempo Real">// Monitoreo en Tiempo Real</span>
+        <span class="section-subtitle" aria-live="polite">Actualizado hace 2 min</span>
+      </div>
+
+      <!-- Gráfico de presión de red -->
+      <div class="chart-wrapper" role="region" aria-label="Gráfico de presión de red de las últimas 12 horas">
+        <div class="chart-header">
+          <span class="chart-title" id="chart-title">Presión de Red — últimas 12 horas</span>
+          <div class="chart-legend" role="list" aria-label="Leyenda del gráfico">
+            <div class="legend-item" role="listitem">
+              <div class="legend-dot" style="background:var(--turquesa)" aria-hidden="true"></div>
+              <span>PSI actual</span>
+            </div>
+            <div class="legend-item" role="listitem">
+              <div class="legend-dot" style="background:var(--morado)" aria-hidden="true"></div>
+              <span>Nivel óptimo</span>
+            </div>
+            <div class="legend-item" role="listitem">
+              <div class="legend-dot" style="background:var(--amber)" aria-hidden="true"></div>
+              <span>Mínimo</span>
+            </div>
+          </div>
+        </div>
+        <svg class="chart-svg"
+             viewBox="0 0 800 120"
+             preserveAspectRatio="none"
+             role="img"
+             aria-labelledby="chart-title"
+             aria-describedby="chart-desc">
+          <desc id="chart-desc">Gráfico de línea que muestra la presión de red en PSI durante las últimas 12 horas. La línea turquesa indica el PSI actual, que oscila entre 38 y 75 PSI. La banda morada indica el rango óptimo (40–70 PSI). La línea ámbar punteada indica el mínimo aceptable de 30 PSI.</desc>
+          <defs>
+            <linearGradient id="areaGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%"   stop-color="#00e5cc" stop-opacity="0.22"/>
+              <stop offset="100%" stop-color="#00e5cc" stop-opacity="0"/>
+            </linearGradient>
+            <linearGradient id="optGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%"   stop-color="#a855f7" stop-opacity="0.10"/>
+              <stop offset="100%" stop-color="#a855f7" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <rect x="0" y="40" width="800" height="30" fill="url(#optGrad)" aria-hidden="true"/>
+          <line x1="0" y1="40" x2="800" y2="40" stroke="#a855f7" stroke-width="1" stroke-dasharray="5 3" opacity="0.5" aria-hidden="true"/>
+          <line x1="0" y1="70" x2="800" y2="70" stroke="#a855f7" stroke-width="1" stroke-dasharray="5 3" opacity="0.5" aria-hidden="true"/>
+          <line x1="0" y1="88" x2="800" y2="88" stroke="var(--amber)" stroke-width="1.5" stroke-dasharray="6 4" opacity="0.6" aria-hidden="true"/>
+          <path d="M0,75 C40,70 80,60 130,52 C180,44 220,42 270,48 C320,54 360,62 410,55 C460,48 500,39 550,45 C600,51 650,58 700,50 C740,44 780,38 800,35 L800,120 L0,120 Z" fill="url(#areaGrad)" aria-hidden="true"/>
+          <path d="M0,75 C40,70 80,60 130,52 C180,44 220,42 270,48 C320,54 360,62 410,55 C460,48 500,39 550,45 C600,51 650,58 700,50 C740,44 780,38 800,35" fill="none" stroke="var(--turquesa)" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"/>
+          <circle cx="130" cy="52" r="4" fill="var(--turquesa)" aria-hidden="true"/>
+          <circle cx="270" cy="48" r="4" fill="var(--turquesa)" aria-hidden="true"/>
+          <circle cx="410" cy="55" r="4" fill="var(--turquesa)" aria-hidden="true"/>
+          <circle cx="550" cy="45" r="4" fill="var(--turquesa)" aria-hidden="true"/>
+          <circle cx="700" cy="50" r="4" fill="var(--turquesa)" aria-hidden="true"/>
+          <text x="0"   y="118" font-size="10" fill="#3d5070" font-family="monospace" aria-hidden="true">00:00</text>
+          <text x="125" y="118" font-size="10" fill="#3d5070" font-family="monospace" aria-hidden="true">02:30</text>
+          <text x="265" y="118" font-size="10" fill="#3d5070" font-family="monospace" aria-hidden="true">05:00</text>
+          <text x="405" y="118" font-size="10" fill="#3d5070" font-family="monospace" aria-hidden="true">07:30</text>
+          <text x="545" y="118" font-size="10" fill="#3d5070" font-family="monospace" aria-hidden="true">10:00</text>
+          <text x="695" y="118" font-size="10" fill="#3d5070" font-family="monospace" aria-hidden="true">12:00</text>
+        </svg>
+      </div>
+
+      <!-- ==========================================
+           EJERCICIO 2 · CUADRÍCULA DE SENSORES
+           flex-wrap: wrap + gap + flex-basis = 3 cols.
+           ========================================== -->
+      <div class="section-header">
+        <span class="section-title" aria-label="Sección: Sensores IoT de la red de acueductos">// Sensores IoT — Red de Acueductos</span>
+        <span class="section-subtitle">6 puntos activos</span>
+      </div>
+
+      <div class="sensor-grid" role="list" aria-label="Cuadrícula de sensores IoT">
+
+        <article class="sensor-card" role="listitem" aria-label="Sensor: Nivel de Tanque Principal, Sector A">
+          <div class="card-header">
+            <span class="card-label" aria-hidden="true">💧 Nivel de Tanque Principal · Sector A</span>
+            <span class="card-badge badge-ok" role="status" aria-label="Estado: Normal">NORMAL</span>
+          </div>
+          <div class="sensor-value" aria-label="Valor: 73 por ciento">73<span class="sensor-unit" aria-hidden="true">%</span></div>
+          <div class="sensor-sub">Actualizado hace 2 min</div>
+          <div class="progress-bar" role="progressbar" aria-valuenow="73" aria-valuemin="0" aria-valuemax="100" aria-label="Nivel: 73%">
+            <div class="progress-fill fill-turquesa" style="width:73%"></div>
+          </div>
+        </article>
+
+        <article class="sensor-card" role="listitem" aria-label="Sensor: Presión de Red, Calle 2">
+          <div class="card-header">
+            <span class="card-label" aria-hidden="true">⚡ Presión de Red · Calle 2</span>
+            <span class="card-badge badge-warn" role="status" aria-label="Estado: Presión baja">BAJO</span>
+          </div>
+          <div class="sensor-value" aria-label="Valor: 28 PSI">28<span class="sensor-unit" aria-hidden="true">PSI</span></div>
+          <div class="sensor-sub">Mínimo: 30 PSI</div>
+          <div class="progress-bar" role="progressbar" aria-valuenow="56" aria-valuemin="0" aria-valuemax="100" aria-label="Presión: 56% del rango">
+            <div class="progress-fill fill-amber" style="width:56%"></div>
+          </div>
+        </article>
+
+        <article class="sensor-card" role="listitem" aria-label="Sensor: Calidad del Agua, Cloro residual">
+          <div class="card-header">
+            <span class="card-label" aria-hidden="true">🧪 Calidad · Cloro residual</span>
+            <span class="card-badge badge-ok" role="status" aria-label="Estado: Óptimo">ÓPTIMO</span>
+          </div>
+          <div class="sensor-value" aria-label="Valor: 0.8 miligramos por litro">0.8<span class="sensor-unit" aria-hidden="true">mg/L</span></div>
+          <div class="sensor-sub">Rango: 0.5 – 1.2 mg/L</div>
+          <div class="progress-bar" role="progressbar" aria-valuenow="62" aria-valuemin="0" aria-valuemax="100" aria-label="Cloro: 62% del rango">
+            <div class="progress-fill fill-azul" style="width:62%"></div>
+          </div>
+        </article>
+
+        <article class="sensor-card" role="listitem" aria-label="Sensor: Caudal de Entrada, Naciente Sur">
+          <div class="card-header">
+            <span class="card-label" aria-hidden="true">🌊 Caudal · Naciente Sur</span>
+            <span class="card-badge badge-ok" role="status" aria-label="Estado: Normal">NORMAL</span>
+          </div>
+          <div class="sensor-value" aria-label="Valor: 142 litros por minuto">142<span class="sensor-unit" aria-hidden="true">L/min</span></div>
+          <div class="sensor-sub">Promedio: 138 L/min</div>
+          <div class="progress-bar" role="progressbar" aria-valuenow="81" aria-valuemin="0" aria-valuemax="100" aria-label="Caudal: 81% del rango">
+            <div class="progress-fill fill-morado" style="width:81%"></div>
+          </div>
+        </article>
+
+        <article class="sensor-card" role="listitem" aria-label="Sensor: Temperatura del Agua">
+          <div class="card-header">
+            <span class="card-label" aria-hidden="true">🌡️ Temperatura del Agua</span>
+            <span class="card-badge badge-ok" role="status" aria-label="Estado: Normal">NORMAL</span>
+          </div>
+          <div class="sensor-value" aria-label="Valor: 19 grados Celsius">19<span class="sensor-unit" aria-hidden="true">°C</span></div>
+          <div class="sensor-sub">Rango: 15 – 25 °C</div>
+          <div class="progress-bar" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" aria-label="Temperatura: 40% del rango">
+            <div class="progress-fill fill-green" style="width:40%"></div>
+          </div>
+        </article>
+
+        <article class="sensor-card" role="listitem" aria-label="Sensor: Válvula de Emergencia VLV-E03. ALERTA: cerrada sin respuesta">
+          <div class="card-header">
+            <span class="card-label" aria-hidden="true">🔴 Válvula de Emergencia · VLV-E03</span>
+            <span class="card-badge badge-alert" role="alert" aria-label="ALERTA: válvula cerrada">ALERTA</span>
+          </div>
+          <div class="sensor-value" style="color:var(--red);font-size:20px;" aria-label="Estado: CERRADA">CERRADA</div>
+          <div class="sensor-sub">Zona Norte — sin respuesta</div>
+          <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" aria-label="Nivel de alerta: máximo">
+            <div class="progress-fill fill-red" style="width:100%"></div>
+          </div>
+        </article>
+
+      </div>
+    </main>
+
+    <!-- ALERT PANEL: flex: 1 = 1/5 del espacio -->
+    <aside class="alert-panel" aria-label="Panel de alertas activas" aria-live="polite">
+      <div class="panel-title" aria-label="Alertas activas del sistema">🔔 Alertas Activas</div>
+
+      <div style="display:flex;gap:8px;flex-wrap:wrap;" role="group" aria-label="Resumen de alertas">
+        <div class="stat-mini" style="flex:1" aria-label="2 alertas críticas">
+          <div class="big" style="color:var(--red)" aria-hidden="true">2</div>
+          <div class="lbl">Críticas</div>
+        </div>
+        <div class="stat-mini" style="flex:1" aria-label="3 advertencias activas">
+          <div class="big" style="color:var(--amber)" aria-hidden="true">3</div>
+          <div class="lbl">Avisos</div>
+        </div>
+      </div>
+
+      <div class="alert-item crit" role="alert" aria-label="Alerta crítica: Válvula VLV-E03 cerrada en Zona Norte, hace 5 minutos">
+        ⚠️ Válvula VLV-E03 cerrada — Zona Norte
+        <span class="alert-time">Hace 5 min · Crítico</span>
+      </div>
+      <div class="alert-item warn" role="status" aria-label="Advertencia: Presión baja en Sector B, 28 PSI, hace 12 minutos">
+        📉 Presión baja Sector B — 28 PSI
+        <span class="alert-time">Hace 12 min · Advertencia</span>
+      </div>
+      <div class="alert-item warn" role="status" aria-label="Advertencia: Tanque Sector C al 22%, hace 31 minutos">
+        💧 Tanque Sector C al 22%
+        <span class="alert-time">Hace 31 min · Advertencia</span>
+      </div>
+      <div class="alert-item ok" role="status" aria-label="Info: Cloro residual en rango normal, hace 45 minutos">
+        ✅ Cloro residual en rango normal
+        <span class="alert-time">Hace 45 min · Info</span>
+      </div>
+      <div class="alert-item info" role="status" aria-label="Info: Caudal Sur 18 por ciento sobre promedio, hace 1 hora 10 minutos">
+        🌊 Caudal Sur 18% sobre promedio
+        <span class="alert-time">Hace 1h 10min · Info</span>
+      </div>
+      <div class="alert-item ok" role="status" aria-label="Info: Servidor 01 reiniciado correctamente, hace 3 horas">
+        ✅ Servidor 01 reiniciado OK
+        <span class="alert-time">Hace 3h · Info</span>
+      </div>
+    </aside>
+
+  </div><!-- /.dashboard-layout -->
+
+  <!-- Footer con firma de Valery -->
+  <footer class="footer" role="contentinfo" aria-label="Información del pie de página">
+    <span>AcueductosIoT · v2.4.1 · ISW-521 Lab #3</span>
+    <span class="footer-firma" aria-label="Desarrollado por Valery Salas Vargas, UTN Sede San Carlos">
+      &lt;/ Valery Salas Vargas &gt;
+    </span>
+    <span>99.8% uptime · UTN 2026-II</span>
+  </footer>
+
+  <script src="app.js"></script>
+
+</body>
+</html>
