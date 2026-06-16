@@ -1,0 +1,8 @@
+Actividad 5
+
+
+Rendimiento: Carga innecesaria de recursos pesados, el elemento tiene una imagen de fondo en resolución 4k declarada en los estilos globales de base. Ya que solo oculta el elemento visualmente, no detiene la descarga de la imagen, por lo que un usuario con un dispositivo viejo gastará sus datos y no podrá verla.
+
+Mantenimiento: El Efecto escalera por anchos fijos, se están usando anchos fijos en pixeles repetidamente a lo largo de múltiples media queries independientes, por lo que esto crea un diseño adaptativo frágil y rígido, es una pesadilla de mantenimiento eleva drásticamente la probabilidad de introducir bugs visuales.
+
+Conceptual: Pensamiento Desktop-First mal ejecutado y zonas muertas, el desarrollador intento forzar una lógica Desktop-first usando el max-width en orden descendente, pero encadeni anchos fijos que entran en conflicto.

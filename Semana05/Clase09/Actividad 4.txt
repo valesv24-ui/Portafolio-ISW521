@@ -1,0 +1,15 @@
+Actividad 4
+
+Se queda como base (estilo global): * display: grid; (común para todas las pantallas).
+
+grid-template-columns: 1fr; y gap: 16px; (los valores del celular).
+
+Se mueve al primer @media (min-width: 600px):
+
+El cambio a 2 columnas: grid-template-columns: repeat(2, 1fr);.
+
+Se mueve al segundo @media (min-width: 1024px):
+
+El cambio a 4 columnas: grid-template-columns: repeat(4, 1fr);.
+
+El incremento del espaciado: gap: 32px;.

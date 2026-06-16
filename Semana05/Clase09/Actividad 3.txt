@@ -1,0 +1,6 @@
+Actividad 3
+
+Bloque A: Cambia la galería a una sola columna fluida y se activa únicamente en pantallas digitales cuyo ancho sea de 599px o menos. 
+Bloque B: Muestra el panel lateral y se activa en cualquier tipo de dispositivo que tiene un ancho de 768px o más y que esté posicionado en orientación horizontal. 
+Bloque C: Oculta por completo la navegación, el pie de pagina y la sección de anuncios para ahorrar espacio y tinta, activándose únicamente cuando el usuario intenta imprimir el sitio web.
+

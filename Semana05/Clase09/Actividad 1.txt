@@ -1,0 +1,7 @@
+Actividad 1
+
+Al sitio web le falta la etiqueta meta viewport en el head.
+
+Con click derecho le da inspeccionar y revisamos el header.
+
+Fix: Agrego las etiquetas correctas.

@@ -1,0 +1,6 @@
+Actividad 2
+
+El máximo es 48px, el mínimo es 24px y el valor preferido seria 40px, la fuente mide entonces 40px.
+El techo (máximo) empieza a mandar exactamente cuando el valor preferido iguala o supera el limite de 3rem (48px).
+Por lo que empieza a mandar a partir de los 1000px de ancho de pantalla, entonces si cualquier pantalla más grande que esa,
+la fuente se clavara en el máximo (48px).
