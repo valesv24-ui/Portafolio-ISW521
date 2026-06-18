@@ -1,0 +1,9 @@
+Actividad 2
+
+Bloque A: Daria undefined porque var hace hoisting, la declaración sube y  la asignación no.
+
+Bloque B: Es referenceError porque intenta acceder a 'y' antes de su declaración.
+
+Bloque c: Es typeError porque el obj = {} reasigna el binding const.
+
+Bloque D: Imprime 3 porque var escapa del bloque en el ciclo for, por lo que queda i disponible con el valor final.

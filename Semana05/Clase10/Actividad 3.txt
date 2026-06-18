@@ -1,0 +1,17 @@
+Actividad 3
+
+1. 13 (String)
+
+2. 3 (Number)
+
+3. 2
+
+4. NaN (Number)
+
+5. True (Boolean)
+
+6. Number (String)
+
+7. False (Boolean)
+
+8. True (Boolean)

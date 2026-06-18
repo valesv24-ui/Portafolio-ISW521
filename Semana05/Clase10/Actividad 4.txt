@@ -1,0 +1,13 @@
+Actividad 4
+
+1. Default, porque || devuelve el primer valor truthy que encuentra.
+
+2. False, porque && busca el primer valor falso.
+
+3. último, porque || busca el primer valor truthy.
+
+4. null, porque && evalúa de izquierda a derecha esperando que todos sean verdaderos.
+
+5. False, porque el operador === es de igualdad estricta, por lo que compara tanto el valor como tipo de dato.
+
+6. True, porque es una regla especial y explicita del operador de igualdad débil.
