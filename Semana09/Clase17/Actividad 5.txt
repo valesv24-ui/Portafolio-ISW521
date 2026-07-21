@@ -1,0 +1,6 @@
+1. Enrutador (React Router) — para navegar entre páginas como /producto/:id, /carrito, /checkout
+2. Manejo de estado global (Redux, Zustand o Context) — para compartir el carrito entre header, producto y checkout sin prop drilling
+3. Cliente HTTP (Axios o fetch) — para consumir la API de productos y pagos
+
+La idea clave: React es una librería, no un framework. Resuelve solo el renderizado de UI y deja que el equipo elija, integre y mantenga
+todo lo demás por separado. A diferencia de Angular, que trae router, HTTP client y formularios ya incluidos.

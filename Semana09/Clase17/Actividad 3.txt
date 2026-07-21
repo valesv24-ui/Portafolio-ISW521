@@ -1,0 +1,6 @@
+1 solo nodo, el elemento de texto del usuario #.237 nada más.
+Un framework bien optimizado no vuelve a pintar toda la lista cuando cambia el estado.
+
+El DOM real es costoso de tocar: cada cambio puede disparar reflow (recalcular layout) y repaint (redibujar píxeles) del navegador. 
+Si el framework reescribiera los 500 nodos cada vez que cambia 1, 
+estarías pagando el costo de 500 operaciones de layout/paint por un cambio que solo necesitaba 1.

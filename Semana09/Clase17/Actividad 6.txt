@@ -1,0 +1,3 @@
+1. Vue, porque se puede adoptar de froma incremental.
+2. Angular, porque necesitas convenciones impuestas por el framework, TypeScript obligatorio y todas las piezas.
+3. React, porque un equipo pequeño y ágil que quiere eligir sus propias piezas.

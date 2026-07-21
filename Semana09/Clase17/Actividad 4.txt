@@ -1,0 +1,8 @@
+Angular
+1. Alta rotación de personal → Angular impone convenciones
+Angular obliga una estructura fija (módulos, TypeScript, inyección de dependencias). Cuando entra gente nueva constantemente, no dependes de que cada quien
+ siga las reglas "por acuerdo" como en una librería ligera — el framework ya las impone.
+
+2. 8 años de vida útil → necesitas mantenibilidad, no velocidad inicial
+TypeScript obligatorio da tipado fuerte en todo el código, y Angular trae routing, formularios, HTTP client, etc. integrados y versionados juntos.
+ Mantener eso 8 años es más simple que mantener 6-8 librerías sueltas que hay que actualizar por separado.
