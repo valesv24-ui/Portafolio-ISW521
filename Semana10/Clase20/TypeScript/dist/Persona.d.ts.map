@@ -1,0 +1,1 @@
+{"version":3,"file":"Persona.d.ts","sourceRoot":"","sources":["../src/Persona.ts"],"names":[],"mappings":"AAAA,qBAAa,OAAO;IAChB,MAAM,EAAE,MAAM,CAAC;IACf,QAAQ,EAAE,MAAM,CAAC;IACjB,IAAI,EAAE,MAAM,CAAC;IAEb,YAAY,MAAM,EAAC,MAAM,EAAC,QAAQ,EAAC,MAAM,EAAC,IAAI,EAAC,MAAM,EAIpD;IAED,OAAO,IAAI,IAAI,CAEd;CACJ"}
